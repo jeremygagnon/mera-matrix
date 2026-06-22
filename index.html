@@ -144,11 +144,11 @@ body{
 .tag{font-family:var(--mono); font-size:9.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); margin-bottom:3px;}
 .cname{font-size:16px; font-weight:600; letter-spacing:-.01em; line-height:1.2; height:2.4em;
   display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;} /* fixed 2-line name box, sized so every dashboard name fits 2 lines → all cards identical height */
-.cfoot{display:flex; align-items:center; justify-content:space-between; margin-top:auto; padding-top:14px;}
-.open{font-family:var(--mono); font-size:12px; letter-spacing:.06em; color:var(--c,var(--accent)); display:flex; align-items:center; gap:7px;}
+.cfoot{display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px 10px; margin-top:auto; padding-top:14px;}
+.open{font-family:var(--mono); font-size:12px; letter-spacing:.06em; color:var(--c,var(--accent)); display:flex; align-items:center; gap:7px; white-space:nowrap;}
 .open .arr{transition:transform .22s ease;}
 .card.live:hover .open .arr{transform:translateX(4px);}
-.pill{font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; padding:3px 9px; border-radius:999px;}
+.pill{font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; white-space:nowrap; padding:3px 9px; border-radius:999px;}
 .pill.on{color:var(--teal); background:rgba(61,220,138,.12);}
 .pill.off{color:var(--faint); background:rgba(255,255,255,.04);}
 .pill.soon{color:var(--c,var(--accent)); background:color-mix(in srgb, var(--c,var(--accent)) 15%, transparent);}
@@ -327,14 +327,14 @@ SECTIONS.forEach(sectionName=>{
     if(live){ el.href = href; el.target = '_blank'; el.rel = 'noopener'; }
     if(!reduceMotion) el.style.opacity = '0';
     el.innerHTML = `
-      ${d.wip ? '<div class="tape" aria-hidden="true"><span>Under Construction</span><span>Under Construction</span><span>Under Construction</span></div>' : ''}
+      ${d.wip ? '<div class="tape" aria-hidden="true"><span>In Development</span><span>In Development</span><span>In Development</span></div>' : ''}
       <div class="chead">
         <div class="ic">${ICONS[d.icon]||ICONS.chart}</div>
         <div><div class="cname">${d.name}</div></div>
       </div>
       <div class="cfoot">
-        <span class="open">${live ? 'Open app' : soon ? 'Coming soon' : 'Link not set'} <span class="arr">${live?'→':'·'}</span></span>
-        <span class="pill ${live?'on':soon?'soon':'off'}">${live?'Live':soon?'Coming Soon':'Set up'}</span>
+        <span class="open">${live ? 'Open app' : soon ? 'In development' : 'Link not set'} <span class="arr">${live?'→':'·'}</span></span>
+        <span class="pill ${live?'on':soon?'soon':'off'}">${live?'Live':soon?'In Development':'Set up'}</span>
       </div>`;
     grid.appendChild(el);
     reveal.push(el);
